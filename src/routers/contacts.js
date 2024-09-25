@@ -11,6 +11,8 @@ import {
 
 import ctrlWrapper from "../utils/crtlWrapper.js";
 import validateBody from "../utils/validateBody.js";
+import authenticate from "../middelwares/authenticate.js";
+
 import {
   addContactSchema,
   putchContactSchema,
@@ -19,6 +21,8 @@ import {
 import isValidId from "../middelwares/isValidId.js";
 
 const contactsRouter = Router();
+
+contactsRouter.use(authenticate);
 
 contactsRouter.get("/", ctrlWrapper(getAllContactsController));
 
