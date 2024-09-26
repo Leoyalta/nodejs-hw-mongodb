@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import {
   getAllContactsController,
-  getContactByIdController,
+  getContactController,
   addContactController,
   upsertContactController,
   updateContactController,
@@ -26,7 +26,7 @@ contactsRouter.use(authenticate);
 
 contactsRouter.get("/", ctrlWrapper(getAllContactsController));
 
-contactsRouter.get("/:id", isValidId, ctrlWrapper(getContactByIdController));
+contactsRouter.get("/:id", isValidId, ctrlWrapper(getContactController));
 
 contactsRouter.post(
   "/",
