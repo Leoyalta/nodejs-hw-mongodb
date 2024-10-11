@@ -17,6 +17,7 @@ export const setupServer = () => {
   app.use(cors());
   app.use(express.json());
   app.use(cookieParser());
+  app.use(express.static("uploads"));
 
   //   routes
   app.use("/contacts", contactsRouter);
