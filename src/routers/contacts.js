@@ -12,6 +12,7 @@ import {
 import ctrlWrapper from "../utils/crtlWrapper.js";
 import validateBody from "../utils/validateBody.js";
 import authenticate from "../middelwares/authenticate.js";
+import upload from "../middelwares/upload.js";
 
 import {
   addContactSchema,
@@ -30,12 +31,16 @@ contactsRouter.get("/:id", isValidId, ctrlWrapper(getContactController));
 
 contactsRouter.post(
   "/",
+  // upload.fields([{name: "photo", maxCount: 2},{name: "logo", maxCount: 1},])
+  // upload.array("photo", 8) // for multiple files
+  upload.single("photo"),
   validateBody(addContactSchema),
   ctrlWrapper(addContactController)
 );
 
 contactsRouter.put(
   "/:id",
+  upload.single("photo"),
   isValidId,
   validateBody(addContactSchema),
   ctrlWrapper(upsertContactController)
@@ -43,6 +48,7 @@ contactsRouter.put(
 
 contactsRouter.patch(
   "/:id",
+  upload.single("photo"),
   isValidId,
   validateBody(putchContactSchema),
   ctrlWrapper(updateContactController)

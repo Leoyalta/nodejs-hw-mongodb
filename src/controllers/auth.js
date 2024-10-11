@@ -62,3 +62,35 @@ export const logoutController = async (req, res) => {
   res.clearCookie("refreshToken");
   res.status(204).send();
 };
+
+import { requestResetToken } from "../services/auth.js";
+
+export const requestResetEmailController = async (req, res) => {
+  await requestResetToken(req.body.email);
+  res.json({
+    message: "Reset password email was successfully sent!",
+    status: 200,
+    data: {},
+  });
+};
+export const requestSendEmailController = async (req, res) => {
+  const { email } = req.body;
+  await authServices.requestResetToken(email);
+
+  res.send({
+    status: 200,
+    message: "Reset password email has been successfully sent.",
+    data: {},
+  });
+};
+
+export const resetPasswordController = async (req, res) => {
+  const { password, token } = req.body;
+  await authServices.resetPassword(password, token);
+
+  res.json({
+    message: "Password was successfully reset!",
+    status: 200,
+    data: {},
+  });
+};
