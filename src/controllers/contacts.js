@@ -24,7 +24,7 @@ export const getAllContactsController = async (req, res) => {
   });
   res.json({
     status: 200,
-    massage: "Succesfuiily found contacts",
+    message: "Succesfuiily found contacts",
     data,
   });
 };
@@ -62,7 +62,7 @@ export const addContactController = async (req, res) => {
   const { _id: userId } = req.user;
   const data = await contactServices.addContact({ ...req.body, userId, photo });
   res.status(201).json({
-    sstatus: 201,
+    status: 201,
     message: "Successfully created a contact!",
     data: data,
   });
