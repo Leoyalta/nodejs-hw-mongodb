@@ -2,7 +2,8 @@
 
 import * as authServices from "../services/auth.js";
 import { requestResetToken } from "../services/auth.js";
-import { generateGoogleOAuthUrl } from "../utils/filters/GoogleOAuth2.js";
+import { generateGoogleOAuthUrl } from "../utils/filters/googleOAuth2.js";
+
 const setupSession = (res, session) => {
   res.cookie("refreshToken", session.refreshToken, {
     httpOnly: true,
@@ -114,7 +115,7 @@ export const loginWhithGoogleOAuthUrlController = async (req, res) => {
   res.json({
     status: 200,
     message: "Successfully login by Google OAuth",
-    data: {
+    date: {
       accessToken: session.accessToken,
     },
   });
