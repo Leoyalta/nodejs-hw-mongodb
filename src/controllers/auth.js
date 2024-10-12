@@ -3,7 +3,6 @@
 import * as authServices from "../services/auth.js";
 import { requestResetToken } from "../services/auth.js";
 import { generateGoogleOAuthUrl } from "../utils/filters/GoogleOAuth2.js";
-
 const setupSession = (res, session) => {
   res.cookie("refreshToken", session.refreshToken, {
     httpOnly: true,
