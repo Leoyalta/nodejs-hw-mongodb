@@ -5,6 +5,7 @@ import {
   userLoginSchema,
   requestSendEmailSchema,
   resetPasswordShema,
+  userLogInWhithGoogleOAuthSchema,
 } from "../validation/users.js";
 
 import ctrlWrapper from "../utils/crtlWrapper.js";
@@ -16,6 +17,17 @@ authRouter.post(
   "/register",
   validateBody(userRegisterSchema),
   ctrlWrapper(authControllers.registerController)
+);
+
+authRouter.get(
+  "/google-oauth-url",
+  ctrlWrapper(authControllers.getGoogleOauthUrlController)
+);
+
+authRouter.post(
+  "/confirm-google",
+  validateBody(userLogInWhithGoogleOAuthSchema),
+  authControllers.loginWhithGoogleOAuthUrlController
 );
 
 authRouter.post(
@@ -35,7 +47,7 @@ authRouter.post(
 );
 
 authRouter.post(
-  "/reset-password",
+  "/reset-pwd",
   validateBody(resetPasswordShema),
   ctrlWrapper(authControllers.resetPasswordController)
 );
