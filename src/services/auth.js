@@ -15,7 +15,7 @@ import { sendEmail } from "../utils/sendMail.js";
 import { createJwtToken } from "../utils/jwt.js";
 import { TEMPLATES_DIR } from "../constants/index.js";
 
-import { validateCode } from "../utils/filters/GoogleOAuth2.js";
+import { validateCode } from "../utils/filters/googleOAuth2.js";
 
 import handlebars from "handlebars";
 import path from "node:path";
