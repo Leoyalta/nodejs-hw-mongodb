@@ -27,7 +27,7 @@ responses:
             message:
               type: string
               example: Contact successfully deleted.
-              description: A message confirming that the contact was successfully deleted.
+              description: A message confirming that the contact was deleted successfully.
           required:
             - status
             - message
