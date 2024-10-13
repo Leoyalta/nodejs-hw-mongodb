@@ -84,8 +84,7 @@ export const upsertContactController = async (req, res) => {
 
   const { isNew, data } = await contactServices.updateContact(
     { _id: id, userId },
-    req.body,
-    photo,
+    { ...req.body, photo }, // Додаємо поле photo до даних для оновлення
     {
       upsert: true,
     }
@@ -94,9 +93,9 @@ export const upsertContactController = async (req, res) => {
   console.log(data);
 
   res.status(status).json({
-    status: 200,
+    status,
     message: "Contact updated successfully",
-    data: data, // Оновлені дані контакту
+    data: data,
   });
 };
 
@@ -116,7 +115,7 @@ export const updateContactController = async (req, res) => {
 
   const result = await contactServices.updateContact(
     { _id: id, userId },
-    req.body,
+    { ...req.body, photo }, // Додаємо photo до даних для оновлення
     photo
   );
 
