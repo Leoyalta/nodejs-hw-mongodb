@@ -10,6 +10,7 @@ import authRouter from "./routers/auth.js";
 import notFoundHandler from "./middelwares/notFoundHandler.js";
 import errorHandler from "./middelwares/errorHandler.js";
 import cookieParser from "cookie-parser";
+import swaggerDocs from "./middelwares/swaggerDocs.js";
 export const setupServer = () => {
   const app = express();
 
@@ -22,6 +23,9 @@ export const setupServer = () => {
   //   routes
   app.use("/contacts", contactsRouter);
   app.use("/auth", authRouter);
+
+  const swaggerMiddleware = swaggerDocs(); // Отримати масив middleware
+  app.use("/api-docs", ...swaggerMiddleware);
 
   // middlewares
   app.use(notFoundHandler);
